@@ -11,6 +11,7 @@
 !.md
 
 !*.pdf
-!*.docx
 
 !*.cs
+!*.xaml
+!*.xaml.cs
