@@ -6,12 +6,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+using PCSC;
+using PCSC.Exceptions;
+using PCSC.Utils;
+
+
 namespace WpfLab1
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+
+        // zmienne statyczne 
+        private static SCardError error;
+        private static SCardReader reader;
+        private static SCardContext context;
+        private static System.IntPtr protocol;
+
     }
 }
