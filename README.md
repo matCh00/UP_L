@@ -1,9 +1,9 @@
 # UP_L
 
 
-### [lab1](https://github.com/matCh00/UP_L/tree/main/lab1)   
+### [lab1](https://github.com/matCh00/UP_L/tree/main/ChipCardReader)   
 Czytnik kart chipowych
 
 
-### [lab2](https://github.com/matCh00/UP_L/tree/main/lab1)   
+### [lab2](https://github.com/matCh00/UP_L/tree/main/SoundCard)   
 Karta muzyczna
