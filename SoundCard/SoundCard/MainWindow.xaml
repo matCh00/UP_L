@@ -1,0 +1,142 @@
+﻿<Window x:Class="SoundCard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoundCard"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <!-- .... other resources .... -->
+
+        <!--A Style that affects all TextBlocks-->
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+
+        <!--A Style that extends the previous TextBlock Style with an x:Key of TitleText-->
+        <Style BasedOn="{StaticResource {x:Type TextBlock}}"
+           TargetType="TextBlock"
+           x:Key="TitleText">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.0" Color="#1f00ff" />
+                            <GradientStop Offset="1.0" Color="#0a0055" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0"/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsPressed" Value="False" />
+                        <Condition Property="IsMouseOver" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#001560" />
+                </MultiTrigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Button.Background" Value="#006666" />
+                    <Setter Property="Button.Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Black" Direction="320" ShadowDepth="0" BlurRadius="0" Opacity="0" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.0" Color="#ff0000" />
+                            <GradientStop Offset="1.0" Color="#0013ff" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid Background="#c9ffe7">
+
+        <Border Background="#c9ffd6" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="64" Margin="30,28,0,0" VerticalAlignment="Top" Width="312">
+            <Canvas Margin="1,-1,-1,1">
+                <Button Content="PlaySound" Height="18" Margin="190,40,0,0" Width="124" Canvas.Left="-35" Canvas.Top="-30" Click="PlaySound"/>
+                <Button Content="Echo" Height="18" Margin="190,63,0,0" Width="124" Click="Echo" Canvas.Left="-35" Canvas.Top="-29"/>
+                <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="42,49,0,0" TextWrapping="Wrap" Width="148" Canvas.Top="-27" Canvas.Left="-27"><Run Text="Odtwórz dźwięk:"/></TextBlock>
+            </Canvas>
+        </Border>
+
+        <Border Background="#c9ffd6" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="93" Margin="400,60,0,0" VerticalAlignment="Top" Width="381">
+            <Canvas>
+                <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="418,69,0,0" TextWrapping="Wrap" Width="116" Canvas.Left="-407" Canvas.Top="-55"><Run Text="Podaj nazwę pliku:"/></TextBlock>
+                <TextBox Name="getFileNameTextBox" Height="20" Margin="418,97,0,0" Text="file.wav" TextWrapping="Wrap" Width="179" Canvas.Left="-407" Canvas.Top="-46"/>
+                <Button Content="Wczytaj" Height="18" Margin="613,74,0,0" Width="151" Click="Wczytaj" Canvas.Left="-396" Canvas.Top="-65"/>
+                <Button Content="Stop" Height="18" Margin="613,120,0,0" Width="151" Click="Stop" Canvas.Left="-396" Canvas.Top="-55"/>
+                <Button Content="Odtwórz  .wav / .mp3" Height="18" Margin="613,97,0,0" Width="151" Click="Play" Canvas.Left="-396" Canvas.Top="-61"/>
+            </Canvas>
+        </Border>
+
+        <Border Background="#c9ffd6" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="68" Margin="447,205,0,0" VerticalAlignment="Top" Width="305">
+            <Canvas>
+                <Button Content="DirectSound" Height="18" Margin="608,218,0,0" Width="125" Canvas.Left="-445" Canvas.Top="-206" Click="DirectSound"/>
+                <Button Content="Waveform" Height="18" Margin="608,241,0,0" Width="125" Click="Waveform" Canvas.Left="-444" Canvas.Top="-204"/>
+                <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="460,227,0,0" TextWrapping="Wrap" Width="149" Canvas.Left="-450" Canvas.Top="-205"><Run Text="Odtwórz za pomocą:"/></TextBlock>
+            </Canvas>
+        </Border>
+
+        <Border Background="#c9ffd6" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="176" Margin="30,205,0,0" VerticalAlignment="Top" Width="351">
+            <Canvas>
+                <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="42,215,0,0" TextWrapping="Wrap" Width="158" Canvas.Left="-18" Canvas.Top="-196"><Run Text="Zczytaj nagłówek WAVa:"/></TextBlock>
+                <Button Content="Czytaj" Height="18" Margin="217,215,0,0" Width="125" Click="Czytaj" Canvas.Left="-22" Canvas.Top="-194"/>
+                <TextBox Name="headerTextBox" IsReadOnly="True" Height="110" Margin="42,253,0,0" TextWrapping="Wrap" Width="327" Canvas.Left="-32" Canvas.Top="-199"/>
+            </Canvas>
+        </Border>
+
+        <Border Background="#c9ffd6" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="70" Margin="497,323,0,0" VerticalAlignment="Top" Width="191">
+            <Canvas>
+                <Button Content="Rozpocznij nagrywanie" Height="20" Margin="518,331,0,0" Width="150" Click="StartRecord" Canvas.Left="-500" Canvas.Top="-322"/>
+                <Button Content="Zakończ nagrywanie" Height="20" Margin="518,354,0,0" Width="150" Click="StopRecord" Canvas.Left="-500" Canvas.Top="-315"/>
+            </Canvas>
+        </Border>
+
+    </Grid>
+</Window>
