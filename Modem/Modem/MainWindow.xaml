@@ -96,33 +96,29 @@
 
     <Grid Background="#6996FF">
 
-        <Border Background="#F42BFE" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Center" Height="92" Margin="0,44,0,0" VerticalAlignment="Top" Width="500">
+        <Border Background="#F42BFE" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="92" Margin="30,55,0,0" VerticalAlignment="Top" Width="351">
             <Canvas Margin="1,-1,-1,1">
-                <Button Content="Załaduj porty" Height="18" Margin="190,40,0,0" Width="124" Canvas.Left="-174" Canvas.Top="4" Click="Ports"/>
-                <Button Content="Połącz" Height="18" Margin="190,63,0,0" Width="124" Click="Connect" Canvas.Left="165" Canvas.Top="-14"/>
+                <Button Content="Połącz" Height="18" Margin="190,63,0,0" Width="124" Click="ConnectButton" Canvas.Top="-14" Canvas.Left="10"/>
                 <TextBlock
-                Width="148" TextWrapping="Wrap" Text="Wybierz port" Canvas.Top="-33" Style="{StaticResource TitleText}" Margin="42,49,0,0" Canvas.Left="159" Height="18"/>
-                <TextBlock
-                Width="148" TextWrapping="Wrap" Text="Wybierz port" Canvas.Top="-27" Style="{StaticResource TitleText}" Margin="42,49,0,0" Canvas.Left="-27" Height="18"/>
-                <TextBlock Style="{StaticResource TitleText}" Height="24" TextWrapping="Wrap" Width="103" Canvas.Top="18" Canvas.Left="385"><Run Language="pl-pl" Text="P"/><Run Text="ołącz się"/></TextBlock>
+                Width="148" TextWrapping="Wrap" Canvas.Top="-30" Style="{StaticResource TitleText}" Margin="42,49,0,0" Height="18" Canvas.Left="17"><Run Language="pl-pl" Text="Podaj"/><Run Text=" port"/></TextBlock>
+                <TextBlock Style="{StaticResource TitleText}" Height="24" TextWrapping="Wrap" Width="103" Canvas.Top="19" Canvas.Left="236"><Run Language="pl-pl" Text="P"/><Run Text="ołącz się"/></TextBlock>
+                <TextBox x:Name="portTextBox" Height="20" Width="154" Canvas.Left="20" Canvas.Top="47"/>
             </Canvas>
         </Border>
 
-        <Border Background="#F42BFE" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="176" Margin="30,183,0,0" VerticalAlignment="Top" Width="351">
+        <Border Background="#F42BFE" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="236" Margin="30,170,0,0" VerticalAlignment="Top" Width="351">
             <Canvas>
                 <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="42,215,0,0" TextWrapping="Wrap" Width="158" Canvas.Left="-18" Canvas.Top="-196"><Run Text="Wyślij wiadomość"/></TextBlock>
-                <Button Content="Wyślij" Height="18" Margin="217,215,0,0" Width="125" Click="Send" Canvas.Left="-22" Canvas.Top="-194"/>
-                <TextBox Name="sendMessageTextBox" IsReadOnly="False" Height="110" Margin="42,253,0,0" TextWrapping="Wrap" Width="327" Canvas.Left="-32" Canvas.Top="-199"/>
+                <Button Content="Wyślij" Height="18" Margin="217,215,0,0" Width="125" Click="SendButton" Canvas.Left="-22" Canvas.Top="-194"/>
+                <TextBox Name="sendMessageTextBox" IsReadOnly="False" Height="170" Margin="44,258,0,0" TextWrapping="Wrap" Width="326" Canvas.Left="-32" Canvas.Top="-206"/>
             </Canvas>
         </Border>
-        <Border Background="#F42BFE" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="176" Margin="420,183,0,0" VerticalAlignment="Top" Width="351">
-            <Canvas>
-                <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="42,215,0,0" TextWrapping="Wrap" Width="158" Canvas.Left="-18" Canvas.Top="-196"><Run Text="Odbierz wiadomość"/></TextBlock>
-                <Button Content="Odbierz" Height="18" Margin="217,215,0,0" Width="125" Click="Receive" Canvas.Left="-22" Canvas.Top="-194"/>
-                <TextBox x:Name="receiveMessageTextBox" IsReadOnly="True" Height="110" Margin="42,253,0,0" TextWrapping="Wrap" Width="327" Canvas.Left="-32" Canvas.Top="-199"/>
+        <Border Background="#F42BFE" CornerRadius ="3" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="351" Margin="400,55,0,0" VerticalAlignment="Top" Width="378">
+            <Canvas Margin="0,0,0,-13">
+                <TextBlock Style="{StaticResource TitleText}" Height="18" Margin="42,215,0,0" TextWrapping="Wrap" Width="158" Canvas.Left="116" Canvas.Top="-202"><Run Language="pl-pl" Text="Konwersacja"/></TextBlock>
+                <TextBox x:Name="receiveMessageTextBox" IsReadOnly="True" Height="289" Margin="42,253,0,0" TextWrapping="Wrap" Width="341" Canvas.Left="-25" Canvas.Top="-211"/>
             </Canvas>
         </Border>
-        <ComboBox Name="portsComboBox" HorizontalAlignment="Center" Height="20" Margin="0,90,0,0" VerticalAlignment="Top" Width="154"/>
 
     </Grid>
 </Window>

@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.IO.Ports;
+using System.Threading;
 
 
 namespace Modem
@@ -19,54 +22,115 @@ namespace Modem
     public partial class MainWindow : Window
     {
 
-        // manager portów
-        SerialPortManager portManager;
-
         public MainWindow()
         {
             InitializeComponent();
         }
 
 
-        // załadowanie portów
-        private void Ports(object sender, RoutedEventArgs e)
+        // główne zmienne
+        SerialPort serialPort;
+        Thread reader;
+
+
+// początek
+///////////////////////////////////////////////////////////////////////////
+// okno aplikacji
+
+
+
+        // przycisk połączenie się z portem
+        private void ConnectButton(object sender, RoutedEventArgs e)
         {
-            List<String> ComList = portManager.GetCOM();
-
-            portsComboBox.Items.Clear();
-            portsComboBox.ItemsSource = ComList;
-        }
-
-
-        // połączenie się z portem
-        private void Connect(object sender, RoutedEventArgs e)
-        {
-            if (portsComboBox.SelectedItem != null)
+            if (portTextBox.Text != null)
             {
-                portManager.Connect(portsComboBox.SelectedItem.ToString());
+                Connect(portTextBox.Text);
             }
         }
 
 
-        // wysłanie wiadomości
-        private void Send(object sender, RoutedEventArgs e)
+
+        // przycisk wysłanie wiadomości
+        private void SendButton(object sender, RoutedEventArgs e)
         {
             string message;
             message = sendMessageTextBox.Text;
 
             Console.WriteLine("SENT MESSAGE: " + message);
 
-            portManager.SendMessage(message);
+            SendMessage(message);
         }
 
 
-        // odebranie wiadomości
-        private void Receive(object sender, RoutedEventArgs e)
-        {
-            string message;
-            message = portManager.ReadMessage();
 
-            Console.WriteLine("RECEIVED MESSAGE: " + message);
+// okno aplikacji
+///////////////////////////////////////////////////////////////////////////
+// modem
+
+
+
+        // łączenie z modemem
+        public void Connect(string COM)
+        {
+            Console.WriteLine(COM);
+
+            if (serialPort != null)
+                if (serialPort.IsOpen)
+                    serialPort.Close();
+
+
+            serialPort = new SerialPort(COM);
+
+
+            if (serialPort != null)
+                serialPort.Open();
+
+
+            if (serialPort.IsOpen)
+            {
+                serialPort.DtrEnable = true;
+                serialPort.Handshake = Handshake.RequestToSend;
+
+                Console.WriteLine(serialPort.PortName);
+                Console.WriteLine(serialPort.BaudRate);
+                Console.WriteLine(serialPort.Parity);
+                Console.WriteLine(serialPort.DataBits);
+                Console.WriteLine(serialPort.StopBits);
+                Console.WriteLine(serialPort.Handshake);
+                Console.WriteLine(serialPort.DtrEnable);
+
+                reader = new Thread(Read);
+                reader.Start();
+            }
+        }
+
+
+
+        // wysyłanie wiadomości
+        public void SendMessage(string message)
+        {
+            if (serialPort != null)
+                serialPort.WriteLine(message);
+
+            else
+                Console.WriteLine("CONNECTING TO SERIAL PORT FAILED");
+        }
+
+
+
+        // ciągłe odbieranie wiadomości
+        private void Read()
+        {
+            while (serialPort.IsOpen)
+            {
+                try
+                {
+                    string message = serialPort.ReadLine();
+                    Console.Write(message);
+                    receiveMessageTextBox.Text += message;
+                }
+                catch (TimeoutException) { }
+            }
         }
     }
 }
