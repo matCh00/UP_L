@@ -50,6 +50,23 @@ namespace Modem
 
 
 
+        private void CallButton(object sender, RoutedEventArgs e)
+        {
+            string number = callTextBox.Text;
+
+            serialPort.Write("ATDT " + number + Environment.NewLine);
+        }
+
+
+
+        private void PickUpButton(object sender, RoutedEventArgs e)
+        {
+
+            serialPort.Write("ATA" + Environment.NewLine);
+        }
+
+
+
         // przycisk wysłanie wiadomości
         private void SendButton(object sender, RoutedEventArgs e)
         {
@@ -59,6 +76,9 @@ namespace Modem
             Console.WriteLine("SENT MESSAGE: " + message);
 
             SendMessage(message);
+
+            receiveMessageTextBox.Text += "Komputer2: ";
+            receiveMessageTextBox.Text += message;
         }
 
 
@@ -99,9 +119,12 @@ namespace Modem
                 Console.WriteLine(serialPort.Handshake);
                 Console.WriteLine(serialPort.DtrEnable);
 
+
                 reader = new Thread(Read);
                 reader.Start();
             }
+
+            serialPort.Write("ATS0=1" + Environment.NewLine);
         }
 
 
@@ -109,8 +132,8 @@ namespace Modem
         // wysyłanie wiadomości
         public void SendMessage(string message)
         {
-            if (serialPort != null)
-                serialPort.WriteLine(message);
+            if (serialPort.IsOpen)
+                serialPort.Write(message + Environment.NewLine);
 
             else
                 Console.WriteLine("CONNECTING TO SERIAL PORT FAILED");
