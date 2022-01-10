@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Brecham.Obex" Version="1.7.0" />
+    <PackageReference Include="InTheHand.BluetoothLE" Version="4.0.22" />
+    <PackageReference Include="InTheHand.Net.Bluetooth" Version="4.0.25" />
+    <PackageReference Include="InTheHand.Net.IrDA" Version="4.0.2" />
+    <PackageReference Include="InTheHand.Net.Obex" Version="4.0.4" />
+  </ItemGroup>
+
+</Project>
