@@ -26,97 +26,6 @@ namespace Bluetooth
     public partial class MainWindow : Window
     {
 
-        /*
-         
-        BTHelper helper;
-
-
-        public MainWindow()
-        {
-            InitializeComponent();
-            helper = new BTHelper();
-        }
-
-
-
-        private void searchAdapterButton_Click(object sender, EventArgs e)
-        {
-            helper.refreshAdapters();
-            adaptersListBox.Items.Clear();
-            if (helper.btAdapters.Length != 0)
-            {
-                foreach (var device in helper.btAdapters)
-                    adaptersListBox.Items.Add(device.Name);
-            }
-
-        }
-
-
-
-        private void adaptersInfoButton_Click(object sender, EventArgs e)
-        {
-            if (helper.chosenRadio != null)
-                helper.displayAdapterInfo();
-
-        }
-
-
-
-        private void adaptersListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            helper.chosenRadio = helper.btAdapters[adaptersListBox.SelectedIndex];
-        }
-
-
-
-        private void searchDevicesButton_Click(object sender, EventArgs e)
-        {
-            devicesListBox.Items.Clear();
-            if (helper.chosenRadio != null)
-            {
-                helper.refreshDevices();
-                foreach (var device in helper.btDevices)
-                {
-                    devicesListBox.Items.Add(device.DeviceName.ToString());
-                }
-            }
-        }
-
-
-
-        private void devicesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            helper.chosenDevice = helper.btDevices[devicesListBox.SelectedIndex];
-        }
-
-
-
-        private void deviceInfoButton_Click(object sender, EventArgs e)
-        {
-            if (helper.chosenRadio != null)
-                if (helper.chosenDevice != null)
-                    helper.displayDeviceInfo();
-        }
-
-
-
-        private void connectButton_Click(object sender, EventArgs e)
-        {
-            if (helper.chosenDevice != null)
-                helper.connectDevice();
-        }
-
-
-
-        private void sendFileButton_Click(object sender, EventArgs e)
-        {
-            helper.sendFile();
-        }
-        
-        */
-
-        
-         
         private BluetoothDeviceInfo[] devices;
         private bool isPaired = false;
         private BluetoothDeviceInfo deviceToPair = null;
@@ -196,10 +105,14 @@ namespace Bluetooth
         private void buttonSendFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.FileName = "openFileDialog";
+            openFileDialog.FileOk += new CancelEventHandler(openFileDialog_FileOk);
+
             openFileDialog.ShowDialog();
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void openFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             Task.Run(() =>
             {
@@ -241,9 +154,10 @@ namespace Bluetooth
 
             return response.StatusCode;
         }
-        
-        
 
+        private void buttonSendFile_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }
