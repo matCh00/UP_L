@@ -98,14 +98,14 @@
 
 
     <Grid Height="346" Width="629">
-        <Button Name="buttonSendFile" Height="35" Width="220" TabIndex="7" Click="buttonSendFile_Click" Margin="0,0,10,115" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Wyślij plik na wybrane urządzenie</Button>
-        <Button Name="buttonUnpair" Height="35" Width="220" TabIndex="6" Click="buttonUnpair_Click" Margin="0,0,10,53" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Usuń sparowane urządzenie</Button>
-        <Button Name="buttonPair" Height="35" Width="130" TabIndex="5" Click="buttonPair_Click" Margin="0,0,60,220" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Paruj urządzenie</Button>
+        <Button Name="buttonSendFile" Height="45" Width="220" TabIndex="7" Click="buttonSendFile_Click" Margin="0,0,0,88" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Wyślij plik na wybrane urządzenie</Button>
+        <Button Name="buttonUnpair" Height="45" Width="220" TabIndex="6" Click="buttonUnpair_Click" Margin="0,0,0,38" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Usuń sparowane urządzenie</Button>
+        <Button Name="buttonPair" Height="45" Width="220" TabIndex="5" Click="buttonPair_Click" Margin="0,0,0,205" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Paruj urządzenie</Button>
         <ListBox Name="listBoxDevices" Height="124" Width="378" TabIndex="4" Margin="2,29,249,193" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
         <ListBox Name="listBoxConnected" Height="124" Width="378" TabIndex="2" Margin="2,196,249,26" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button Name="buttonFind" Height="35" Width="130" TabIndex="0" Click="buttonFind_Click" Margin="0,0,60,282" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Szukaj urządzeń</Button>
-        <TextBlock Text="Znalezione urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,8,0,155"/>
-        <TextBlock Text="Połączone urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,173,0,-163"/>
+        <Button Name="buttonFind" Height="45" Width="220" TabIndex="0" Click="buttonFind_Click" Margin="0,0,0,255" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Szukaj urządzeń</Button>
+        <TextBlock Text="Znalezione urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,8,0,317"/>
+        <TextBlock Name="SecondTextBox" Text="Połączone urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,173,0,150"/>
     </Grid>
 
 

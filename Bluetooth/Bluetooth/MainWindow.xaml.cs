@@ -39,6 +39,7 @@ namespace Bluetooth
 
         private void buttonFind_Click(object sender, EventArgs e)
         {
+
             //czyszczenie listy urządzeń
             listBoxDevices.Items.Clear();
 
@@ -87,6 +88,8 @@ namespace Bluetooth
                 foreach (var device in connected)
                     listBoxConnected.Items.Add(device.DeviceName);
             }
+
+            MessageBox.Show("Name: " + deviceToPair.DeviceName + "\n" + "Address: " + deviceToPair.DeviceAddress.ToString());
         }
 
         private void buttonUnpair_Click(object sender, EventArgs e)
@@ -106,10 +109,10 @@ namespace Bluetooth
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.FileName = "openFileDialog";
+            openFileDialog.FileName = "file";
             openFileDialog.FileOk += new CancelEventHandler(openFileDialog_FileOk);
 
-            openFileDialog.ShowDialog();
+            _ = openFileDialog.ShowDialog();
         }
 
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
@@ -153,11 +156,6 @@ namespace Bluetooth
 
 
             return response.StatusCode;
-        }
-
-        private void buttonSendFile_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
