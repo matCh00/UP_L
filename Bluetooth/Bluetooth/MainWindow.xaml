@@ -97,15 +97,17 @@
     </Window.Resources>
 
 
-    <Grid Height="346" Width="629">
-        <Button Name="buttonSendFile" Height="45" Width="220" TabIndex="7" Click="buttonSendFile_Click" Margin="0,0,0,88" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Wyślij plik na wybrane urządzenie</Button>
-        <Button Name="buttonUnpair" Height="45" Width="220" TabIndex="6" Click="buttonUnpair_Click" Margin="0,0,0,38" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Usuń sparowane urządzenie</Button>
-        <Button Name="buttonPair" Height="45" Width="220" TabIndex="5" Click="buttonPair_Click" Margin="0,0,0,205" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Paruj urządzenie</Button>
-        <ListBox Name="listBoxDevices" Height="124" Width="378" TabIndex="4" Margin="2,29,249,193" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <ListBox Name="listBoxConnected" Height="124" Width="378" TabIndex="2" Margin="2,196,249,26" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
-        <Button Name="buttonFind" Height="45" Width="220" TabIndex="0" Click="buttonFind_Click" Margin="0,0,0,255" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Szukaj urządzeń</Button>
+    <Grid Height="366" Width="629">
+        <Button Name="buttonSendFile" Height="45" Width="220" TabIndex="7" Click="buttonSendFile_Click" Margin="0,0,0,127" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Wyślij pliki na urządzenie</Button>
+        <Button Name="buttonUnpair" Height="45" Width="220" TabIndex="6" Click="buttonUnpair_Click" Margin="0,0,0,77" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Usuń sparowane urządzenie</Button>
+        <Button Name="buttonPair" Height="45" Width="220" TabIndex="5" Click="buttonPair_Click" Margin="0,0,0,226" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Paruj urządzenie</Button>
+        <ListBox Name="listBoxDevices" Height="124" Width="378" TabIndex="4" Margin="0,0,249,214" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <ListBox Name="listBoxConnected" Height="124" Width="378" TabIndex="2" Margin="0,0,249,60" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Button Name="buttonFind" Height="45" Width="220" TabIndex="0" Click="buttonFind_Click" Margin="0,0,0,276" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Szukaj urządzeń</Button>
         <TextBlock Text="Znalezione urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,8,0,317"/>
-        <TextBlock Name="SecondTextBox" Text="Połączone urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,173,0,150"/>
+        <TextBlock Name="SecondTextBox" Text="Połączone urządzenia" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,162,0,162"/>
+        <ProgressBar Name="progressBar" HorizontalAlignment="Left" Height="11" Margin="4,339,0,0" VerticalAlignment="Top" Width="625"/>
+        <TextBlock x:Name="SecondTextBox_Copy" Text="Postępy w wysyłaniu plików" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,318,0,16"/>
     </Grid>
 
 
