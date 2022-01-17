@@ -1,21 +1,17 @@
-# UP_L
+# Urządzenia peryferyjne
+### WPF
 
 
-### [lab1](https://github.com/matCh00/UP_L/tree/main/ChipCardReader)   
-Czytnik kart chipowych
+### [Czytnik kart chipowych](https://github.com/matCh00/UP_L/tree/main/ChipCardReader)   
 
 
-### [lab2](https://github.com/matCh00/UP_L/tree/main/SoundCard)   
-Karta muzyczna
+### [Karta muzyczna](https://github.com/matCh00/UP_L/tree/main/SoundCard)   
 
 
-### [lab3](https://github.com/matCh00/UP_L/tree/main/Modem)   
-Modem
+### [Modem](https://github.com/matCh00/UP_L/tree/main/Modem)   
 
 
-### [lab4](https://github.com/matCh00/UP_L/tree/main/Camera)   
-Kamera
+### [Kamera](https://github.com/matCh00/UP_L/tree/main/Camera)   
 
 
-### [lab5](https://github.com/matCh00/UP_L/tree/main/Bluetooth)   
-Bluetooth
+### [Bluetooth](https://github.com/matCh00/UP_L/tree/main/Bluetooth)   
