@@ -29,6 +29,8 @@ namespace Joystick
         //Graphics g;
         private const int MOUSEEVENT_LEFTDOWN = 0x02;
         private const int MOUSEEVENT_LEFTUP = 0x04;
+        private const int MOUSEEVENTF_RIGHT_DOWN = 0x08;
+        private const int MOUSEEVENTF_RIGHT_UP = 0x10;
         int? prevX = null;
         int? prevY = null;
 
@@ -88,41 +90,52 @@ namespace Joystick
             {
                 moveCursor();
                 /*if (helper.isButtonClicked)
-                    mouse_event(MOUSEEVENT_LEFTDOWN, Cursor.Position.X, Cursor.Position.Y, 0, 0);
+                    mouse_event(MOUSEEVENT_LEFTDOWN, helper.valueX, helper.valueY, 0, 0);
                 else
-                    mouse_event(MOUSEEVENT_LEFTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);*/
+                    mouse_event(MOUSEEVENT_LEFTUP, helper.valueX, helper.valueY, 0, 0);*/
 
                 label4.Dispatcher.Invoke(() =>
                 {
                     label4.Width = (int)label4.Width;
                     label4.Height = Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueY) / maxPadValue));
-                    //label4.Background = Brushes.Green;
+                    label4.Background = Brushes.White;
                 });
 
                 label5.Dispatcher.Invoke(() =>
                 {
                     label5.Width = Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueX) / maxPadValue));
                     label5.Height = (int)label5.Height;
-                    //label5.Background = Brushes.Green;
+                    label5.Background = Brushes.White;
                 });
 
                 checkBox1.Dispatcher.Invoke(() =>
                 {
-                    checkBox1.IsChecked = helper.isButtonClicked;
+                    checkBox1.IsChecked = helper.isAClicked;
+                });
+
+                checkBox2.Dispatcher.Invoke(() =>
+                {
+                    checkBox2.IsChecked = helper.isBClicked;
+                });
+
+                checkBox3.Dispatcher.Invoke(() =>
+                {
+                    checkBox3.IsChecked = helper.isXClicked;
+                });
+
+                checkBox4.Dispatcher.Invoke(() =>
+                {
+                    checkBox4.IsChecked = helper.isYClicked;
                 });
 
                 label7.Dispatcher.Invoke(() =>
                 {
-                    label7.Width = Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueTriggers) / maxPadValue));
+                    label7.Width = 250 - Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueTriggers) / maxPadValue));
                     label7.Height = (int)label7.Height;
                 });
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -132,15 +145,6 @@ namespace Joystick
             thread.Start();
         }
 
-        private void progressBar2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {

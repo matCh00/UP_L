@@ -14,14 +14,20 @@ namespace Joystick
         public int valueX;
         public int valueY;
         public int valueTriggers;
-        public bool isButtonClicked;
+        public bool isAClicked;
+        public bool isBClicked;
+        public bool isXClicked;
+        public bool isYClicked;
 
         public DirectInputHelper()
         {
             valueX = 65535 / 2;
             valueY = 65535 / 2;
             valueTriggers = 0;
-            isButtonClicked = false;
+            isAClicked = false;
+            isBClicked = false;
+            isXClicked = false;
+            isYClicked = false;
             directInput = new DirectInput();
             gamepadDevice = null;
         }
@@ -61,8 +67,10 @@ namespace Joystick
             {
                 if (joystick.IsDisposed)
                     return;
+
                 joystick.Poll();
                 var datas = joystick.GetBufferedData();
+
                 foreach (var state in datas)
                 {
                     if (state.Offset.ToString().Equals("X"))
@@ -78,8 +86,32 @@ namespace Joystick
                     {
                         switch (state.Value)
                         {
-                            case 0: isButtonClicked = false; break;
-                            case 128: isButtonClicked = true; break;
+                            case 0: isAClicked = false; break;
+                            case 128: isAClicked = true; break;
+                        }
+                    }
+                    else if (state.Offset.ToString().Equals("Buttons1"))
+                    {
+                        switch (state.Value)
+                        {
+                            case 0: isBClicked = false; break;
+                            case 128: isBClicked = true; break;
+                        }
+                    }
+                    else if (state.Offset.ToString().Equals("Buttons2"))
+                    {
+                        switch (state.Value)
+                        {
+                            case 0: isXClicked = false; break;
+                            case 128: isXClicked = true; break;
+                        }
+                    }
+                    else if (state.Offset.ToString().Equals("Buttons3"))
+                    {
+                        switch (state.Value)
+                        {
+                            case 0: isYClicked = false; break;
+                            case 128: isYClicked = true; break;
                         }
                     }
                     else if (state.Offset.ToString().Equals("Z"))
