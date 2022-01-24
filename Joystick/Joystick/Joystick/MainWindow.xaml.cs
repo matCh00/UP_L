@@ -26,7 +26,7 @@ namespace Joystick
         DirectInputHelper helper;
         int progressBarMaxSize = 250;
         int maxPadValue = 65535;
-        //Graphics g;
+        Graphics g;
         private const int MOUSEEVENT_LEFTDOWN = 0x02;
         private const int MOUSEEVENT_LEFTUP = 0x04;
         private const int MOUSEEVENTF_RIGHT_DOWN = 0x08;
@@ -49,11 +49,16 @@ namespace Joystick
 
             //pictureBox1.BackColor = System.Drawing.Color.White;
             //g = pictureBox1.CreateGraphics();
+
+            // emulacja myszy
+            //var inputMonitor = new ControllerAsMouse();
+            //inputMonitor.Start();
         }
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool GetCursorPos(ref Win32Point pt);
+
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct Win32Point
@@ -61,6 +66,8 @@ namespace Joystick
             public Int32 X;
             public Int32 Y;
         };
+
+
         public static System.Drawing.Point GetMousePosition()
         {
             var w32Mouse = new Win32Point();
@@ -72,6 +79,7 @@ namespace Joystick
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
 
         private void moveCursor()
         {
@@ -89,45 +97,52 @@ namespace Joystick
             while (true)
             {
                 moveCursor();
-                /*if (helper.isButtonClicked)
+                if (helper.isAClicked)
                     mouse_event(MOUSEEVENT_LEFTDOWN, helper.valueX, helper.valueY, 0, 0);
                 else
-                    mouse_event(MOUSEEVENT_LEFTUP, helper.valueX, helper.valueY, 0, 0);*/
+                    mouse_event(MOUSEEVENT_LEFTUP, helper.valueX, helper.valueY, 0, 0);
 
+                // oś Y
                 label4.Dispatcher.Invoke(() =>
                 {
                     label4.Width = (int)label4.Width;
                     label4.Height = Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueY) / maxPadValue));
-                    label4.Background = Brushes.White;
+                    label4.Background = System.Windows.Media.Brushes.White;
                 });
 
+                // oś X
                 label5.Dispatcher.Invoke(() =>
                 {
                     label5.Width = Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueX) / maxPadValue));
                     label5.Height = (int)label5.Height;
-                    label5.Background = Brushes.White;
+                    label5.Background = System.Windows.Media.Brushes.White;
                 });
 
+                // przycisk A
                 checkBox1.Dispatcher.Invoke(() =>
                 {
                     checkBox1.IsChecked = helper.isAClicked;
                 });
 
+                // przycisk B
                 checkBox2.Dispatcher.Invoke(() =>
                 {
                     checkBox2.IsChecked = helper.isBClicked;
                 });
 
+                // przycisk X
                 checkBox3.Dispatcher.Invoke(() =>
                 {
                     checkBox3.IsChecked = helper.isXClicked;
                 });
 
+                // przycisk Y
                 checkBox4.Dispatcher.Invoke(() =>
                 {
                     checkBox4.IsChecked = helper.isYClicked;
                 });
 
+                // suwak
                 label7.Dispatcher.Invoke(() =>
                 {
                     label7.Width = 250 - Convert.ToInt32(progressBarMaxSize * (Convert.ToDouble(helper.valueTriggers) / maxPadValue));
@@ -137,7 +152,7 @@ namespace Joystick
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void findGamepad(object sender, EventArgs e)
         {
             helper.connectGamepad();
             textBox1.Text = helper.getGamepadName();
@@ -146,18 +161,24 @@ namespace Joystick
         }
 
 
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        private void picture_MouseDown(object sender, MouseEventArgs e)
         {
-           /* Pen p = new Pen(Color.Black, float.Parse("4"));
-            g.DrawLine(p, new Point(prevX ?? e.X, prevY ?? e.Y), new Point(e.X, e.Y));
+            /*System.Drawing.Pen p = new System.Drawing.Pen(System.Drawing.Color.Black, float.Parse("4"));
+            g.DrawLine(p, new System.Drawing.Point(prevX ?? e.X, prevY ?? e.Y), new System.Drawing.Point(e.X, e.Y));
             prevX = e.X;
             prevY = e.Y;*/
         }
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        private void picture_MouseUp(object sender, MouseEventArgs e)
         {
             prevX = null;
             prevY = null;
+        }
+
+
+        public void buttonClickClear(object sender, EventArgs e)
+        {
+            inkCanvas1.Strokes.Clear();
         }
     }
 }
