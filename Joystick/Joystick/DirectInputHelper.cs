@@ -76,7 +76,6 @@ namespace Joystick
                     if (state.Offset.ToString().Equals("X"))
                     {
                         valueX = state.Value;
-                        Console.WriteLine(valueX);
                     }
                     else if (state.Offset.ToString().Equals("Y"))
                     {
